@@ -1,16 +1,10 @@
 # dstmobileapp
 
-A new Flutter project.
+DSTMobile app is an internet sales' agent mobile app. Uploading Orders for activation.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This project has quite alot of specifications. Its owned by Airtel Uganda Enterprise team.
+It uses Airtel Uganda's DSTMobile and SRTool API for backend.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Cross platform app.
