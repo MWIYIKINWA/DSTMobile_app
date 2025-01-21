@@ -3,7 +3,6 @@ import 'package:dstmobileapp/routes.dart';
 import 'package:dstmobileapp/widgets/dstcard.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:dstmobileapp/controllers/login_controller.dart'; // Import your LoginController
 
 class Dashboard extends StatelessWidget {
   const Dashboard({super.key});
@@ -13,87 +12,158 @@ class Dashboard extends StatelessWidget {
     final LoginController loginController = Get.find<LoginController>();
 
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(50),
-        child: AppBar(
-          backgroundColor: Colors.red,
-          elevation: 0,
-          title: const Text(
-            "DSTMobile",
-            style: TextStyle(
-              fontFamily: "Poppins",
-              fontSize: 15,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-            ),
-          ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.red,
+        elevation: 0,
+        title: const Text(
+          "DSTMobile",
+          style: TextStyle(color: Colors.white),
         ),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Header
-          Container(
-            height: 170,
-            color: Colors.blue,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Obx(() {
-                  return Text(
-                    "Hello, ${loginController.dstname.value}", // Display dynamic dstname
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30.0,
-                      color: Colors.white,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.white), // Logout icon
+            onPressed: () {
+              Get.dialog(
+                AlertDialog(
+                  title: const Text(
+                    "Logout",
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue),
+                  ),
+                  content: const Text("Are you sure you want to logout?"),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Get.back(); // Close the dialog
+                      },
+                      child: const Text("Cancel"),
                     ),
-                  );
-                }),
-              ],
-            ),
-          ),
-
-          // Cards
-          Container(
-            height: 150,
-            color: Colors.white,
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(GetRoutes.orders);
-              },
-              child: const MyCard(
-                addtext: "My Orders",
-                cardicon: Icons.person,
-              ),
-            ),
-          ),
-
-          Container(
-            height: 150,
-            color: Colors.white,
-            child: InkWell(
-              onTap: () {
-                Get.toNamed(GetRoutes.resizing);
-              },
-              child: const MyCard(
-                addtext: "Resizing",
-                cardicon: Icons.house_siding,
-              ),
-            ),
-          ),
-
-          // Footer
-          Container(
-            height: 60,
-            color: Colors.white,
-            child: const Image(
-              image: AssetImage('assets/images/logo_transparent.png'),
-              height: 20,
-              fit: BoxFit.fill,
-            ),
+                    TextButton(
+                      onPressed: () {
+                        Get.back(); // Close the dialog
+                        loginController.logout(); // Call the logout method
+                      },
+                      child: const Text("Logout"),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
         ],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            // Header Container
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(16.0),
+              color: Colors.red, // Red background for the header
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Divider(
+                    color: Colors.white,
+                    height: 20,
+                    thickness: 2,
+                  ),
+                  const Text(
+                    "Dashboard",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Obx(() {
+                    return Text(
+                      "Hello, ${loginController.dstname.value}",
+                      style: const TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    );
+                  }),
+                  const SizedBox(height: 8),
+                  const Divider(
+                    color: Colors.white,
+                    height: 20,
+                    thickness: 2,
+                  )
+                ],
+              ),
+            ),
+
+            const SizedBox(
+              height: 30,
+            ),
+            // Cards Grid
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                crossAxisSpacing: 16.0,
+                mainAxisSpacing: 16.0,
+                children: [
+                  // Orders Card
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(GetRoutes.orders);
+                    },
+                    child: const MyCard(
+                      cardicon: Icons.person_2,
+                      addtext: "Orders",
+                    ),
+                  ),
+                  // Resizing Card
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(GetRoutes.resizing);
+                    },
+                    child: const MyCard(
+                      cardicon: Icons.house_siding,
+                      addtext: "Resizing",
+                    ),
+                  ),
+                  // Reports Card
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(GetRoutes.reportspage);
+                    },
+                    child: const MyCard(
+                      cardicon: Icons.bar_chart,
+                      addtext: "Reports",
+                    ),
+                  ),
+                  // Profile Card
+                  InkWell(
+                    onTap: () {
+                      Get.toNamed(GetRoutes.profilepage);
+                    },
+                    child: const MyCard(
+                      cardicon: Icons.person,
+                      addtext: "Profile",
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const Image(
+              image: AssetImage('assets/images/logo2.jpg'),
+              height: 40.0,
+              fit: BoxFit.fill,
+            ),
+          ],
+        ),
       ),
     );
   }

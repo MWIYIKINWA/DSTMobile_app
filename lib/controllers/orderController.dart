@@ -156,8 +156,68 @@ class OrderController extends GetxController {
       customSnarkbar("Error", "Remarks are Required", "error");
       return;
     } else {
+      //   Get.showOverlay(
+      //       asyncFunction: () => insertOrder(), loadingWidget: const Loader()
+      // );
+
       Get.showOverlay(
-          asyncFunction: () => insertOrder(), loadingWidget: const Loader());
+        asyncFunction: () async {
+          //Check if the order already exists
+          checkOrderAvailability(
+            customerName.text,
+            (existingRecords) {
+              if (existingRecords.isNotEmpty) {
+                // Show a modal with the existing records
+                Get.dialog(
+                  AlertDialog(
+                    title: const Text("Similar Link"),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: existingRecords.map((record) {
+                        return ListTile(
+                          title: Text(
+                            record.customerName ?? "",
+                            style: const TextStyle(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(
+                            record.submissionDate ?? "",
+                            style: const TextStyle(
+                                color: Colors.black, fontSize: 10),
+                          ),
+                        );
+                      }).toList(),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Get.back(); // Close the modal
+                        },
+                        child: const Text("Cancel"),
+                      ),
+                      TextButton(
+                        onPressed: () async {
+                          Get.back(); // Close the modal
+                          await insertOrder(); // Proceed with insertion
+                        },
+                        child: const Text("Continue"),
+                      ),
+                    ],
+                  ),
+                );
+              } else {
+                // No existing records, proceed with insertion
+                insertOrder();
+              }
+            },
+            (error) {
+              customSnarkbar("Error", error, "error");
+            },
+          );
+        },
+        loadingWidget: const Loader(),
+      );
     }
   }
 
@@ -198,6 +258,7 @@ class OrderController extends GetxController {
       var res = jsonDecode(response.body);
       if (res["success"]) {
         customSnarkbar("Success", res["message"], "success");
+        fetchOrders();
         Get.offAllNamed(GetRoutes.orders);
       } else {
         customSnarkbar("Oops", res["message"], "error");
@@ -233,10 +294,33 @@ class OrderController extends GetxController {
       }
     } catch (e) {
       customSnarkbar("Error", "Something went wrong", "error");
-      print("Error $e");
+      // print("Error $e");
     }
   }
 
   // Placeholder for stepList
   stepList() {}
+}
+
+void checkOrderAvailability(String link, Function(List<AllOrders>) onSuccess,
+    Function(String) onError) {
+  http.post(
+    Uri.parse("${baseurl}action.orders.php"),
+    body: {
+      "link": link,
+      "check_order_availability": "1",
+    },
+  ).then((response) {
+    var res = jsonDecode(response.body);
+
+    if (res is List) {
+      List<AllOrders> records =
+          res.map((data) => AllOrders.fromJson(data)).toList();
+      onSuccess(records);
+    } else {
+      onError("Invalid response format");
+    }
+  }).catchError((e) {
+    onError("Failed to check availability: $e");
+  });
 }

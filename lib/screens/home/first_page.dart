@@ -34,11 +34,11 @@ class SplashScreen extends StatelessWidget {
                 height: 20,
               ),
               const Image(
-                image: AssetImage('assets/images/spashimage.png'),
-                height: 40.0,
+                image: AssetImage('assets/images/sales.png'),
+                height: 100.0,
                 fit: BoxFit.fill,
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 50),
               MyButton(
                 label: "GET STARTED",
                 onPressed: () {
@@ -46,7 +46,7 @@ class SplashScreen extends StatelessWidget {
                 },
               ),
               const SizedBox(
-                height: 80.0,
+                height: 40.0,
               ),
               const Image(
                 image: AssetImage('assets/images/logo_transparent.png'),

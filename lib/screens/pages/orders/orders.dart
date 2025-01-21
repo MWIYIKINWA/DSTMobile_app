@@ -18,7 +18,7 @@ class Orders extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            Get.back();
+            Get.offAllNamed(GetRoutes.home);
           },
         ),
         title: const Text(
@@ -120,7 +120,7 @@ class Ordertile extends StatelessWidget {
             Text(
               '${order.customerName}',
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -129,20 +129,23 @@ class Ordertile extends StatelessWidget {
             Text(
               '${order.contact}',
               style: const TextStyle(
-                fontSize: 16,
+                fontSize: 12,
               ),
             ),
             const SizedBox(height: 5),
             // Other fields
             Text(
               'UG-HMSL-${order.sofNo}',
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              style: const TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blue),
             ),
             const SizedBox(height: 10),
             // Customer
             const Text(
               'Status: Pending Corporate',
-              style: TextStyle(fontSize: 16, color: Colors.blue),
+              style: TextStyle(fontSize: 12, color: Colors.blue),
             ),
           ],
         ),

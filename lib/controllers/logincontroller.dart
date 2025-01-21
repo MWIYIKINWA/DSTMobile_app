@@ -74,4 +74,11 @@ class LoginController extends GetxController {
       customSnarkbar("Error", "An unexpected error occurred: $e", "error");
     }
   }
+
+  //
+
+  void logout() async {
+    await SharedPrefs().removeUser();
+    Get.offAllNamed(GetRoutes.login);
+  }
 }

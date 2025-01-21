@@ -1,5 +1,6 @@
 import 'package:dstmobileapp/controllers/resizingController.dart';
 import 'package:dstmobileapp/models/dstresizing.dart';
+import 'package:dstmobileapp/routes.dart';
 import 'package:dstmobileapp/screens/pages/resizing/resizing_details.dart';
 
 import 'package:flutter/material.dart';
@@ -18,8 +19,9 @@ class ResizingPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white), // Back icon
           onPressed: () {
-            // Get.offNamed(GetRoutes.home);
-            Get.back();
+            //Get.toNamed(GetRoutes.home);
+            Get.offAllNamed(GetRoutes.home);
+            //Get.back();
           },
         ),
         title: const Text("DSTMobile"),
@@ -117,7 +119,8 @@ class Restile extends StatelessWidget {
               "Customer: ${resizingItem.resCustomer}",
               style: const TextStyle(
                 fontSize: 14,
-                color: Colors.black54,
+                color: Colors.red,
+                fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 5),
@@ -127,7 +130,8 @@ class Restile extends StatelessWidget {
               "Current ISP: ${resizingItem.resCurrentIsp}",
               style: const TextStyle(
                 fontSize: 14,
-                color: Colors.black54,
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],

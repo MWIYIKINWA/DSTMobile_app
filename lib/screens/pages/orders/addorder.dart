@@ -13,8 +13,6 @@ class AddOrder extends StatefulWidget {
 }
 
 class _AddOrderState extends State<AddOrder> {
-  //final List<String> productTypeOptions = ["GSM", "Fixed Data", "VAS"];
-
   int _activeStepIndex = 0;
 
   List<Step> stepList(OrderController controller) => [
@@ -66,7 +64,11 @@ class _AddOrderState extends State<AddOrder> {
             builder: (controller) {
               return Column(
                 children: [
+                  const SizedBox(
+                    height: 7,
+                  ),
                   DropdownButtonFormField<String>(
+                    isExpanded: true,
                     decoration: const InputDecoration(
                       labelText: "Product Type",
                       border: OutlineInputBorder(),
@@ -113,6 +115,7 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<String>(
+                    isExpanded: true,
                     decoration: const InputDecoration(
                       labelText: "Request Type",
                       border: OutlineInputBorder(),
@@ -138,6 +141,7 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<String>(
+                    isExpanded: true,
                     decoration: const InputDecoration(
                       labelText: "Category of Service",
                       border: OutlineInputBorder(),
@@ -160,6 +164,7 @@ class _AddOrderState extends State<AddOrder> {
                   ),
                   const SizedBox(height: 8),
                   DropdownButtonFormField<String>(
+                    isExpanded: true,
                     decoration: const InputDecoration(
                       labelText: "Product Name",
                       border: OutlineInputBorder(),
@@ -172,15 +177,9 @@ class _AddOrderState extends State<AddOrder> {
                       "Home Internet(Up to 20Mbps)",
                       "Home Internet(Up to 40Mbps)",
                       "Home Internet(Up to 60Mbps)",
-                      "FTTH Internet(Up to 10Mbps)",
-                      "FTTH Internet(Up to 30Mbps)",
-                      "FTTH Internet(Up to 50Mbps)",
                       "Office Internet(Up to 20Mbps)",
                       "Office Internet(Up to 30Mbps)",
                       "Office Internet(Up to 40Mbps)",
-                      "Xtream Max Staff Internet(Up to 20Mbps)",
-                      "Xtream Max Staff Internet(Up to 40Mbps)",
-                      "Xtream Max Staff Internet(Up to 80Mbps)",
                       "Internet",
                     ]
                         .map((pname) => DropdownMenuItem(

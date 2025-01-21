@@ -98,6 +98,8 @@ class ResizingController extends GetxController {
     }
   }
 
+//insert response
+
   insertResponse() async {
     var usr = await SharedPrefs().getUser();
     DstProfile profile = DstProfile.fromJson(json.decode(usr));
@@ -122,7 +124,8 @@ class ResizingController extends GetxController {
       var res = jsonDecode(response.body);
       if (res["success"]) {
         customSnarkbar("Success", res["message"], "success");
-        Get.offAllNamed(GetRoutes.resizing);
+        fetchResizingData();
+        Get.offNamed(GetRoutes.resizing);
       } else {
         customSnarkbar("Oops", res["message"], "error");
       }

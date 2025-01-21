@@ -16,15 +16,7 @@ class OrderDetailScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        flexibleSpace: Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              colors: [Colors.red, Colors.orange],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
+        backgroundColor: Colors.red,
       ),
       body: Container(
         decoration: const BoxDecoration(
@@ -42,7 +34,7 @@ class OrderDetailScreen extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(10.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -78,7 +70,7 @@ class OrderDetailScreen extends StatelessWidget {
                   ),
                   const Divider(height: 20, thickness: 1),
 
-                  // Amount Section
+                  // Product Section
                   DetailRow(
                     icon: Icons.wifi,
                     label: "Product",
