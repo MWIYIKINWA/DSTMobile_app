@@ -2,15 +2,15 @@
 
 A new Flutter project.
 
-## Getting Started
+DSTMobile Simplifies the service order process for Direct Sales Agents, 
+allowing real-time data entry and removing the need for manual workflows. 
+While the app wasn't implemented, this project showcased my skill in spotting operational 
+inefficiencies and developing technical solutions that aimed to speed up service delivery, 
+cut customer turnaround time by about 50%, and improve overall client satisfaction.
 
-This project is a starting point for a Flutter application.
+More Info
 
-A few resources to get you started if this is your first Flutter project:
+https://docs.google.com/document/d/1lOhH50i3V8gNxVw4r33GxTJrEW9T12JOgiba1ZSIlfU/edit?usp=sharing
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
